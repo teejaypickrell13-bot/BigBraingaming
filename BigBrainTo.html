@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Web Design Layout</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #10152b, #263b70);
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+}
+
+
+/* Header/Blog Title */
+.header {
+    width: 100%;
+    padding: 30px 20px;
+    text-align: center;
+    background: #10152b;
+    color: white;
+}
+
+.header h1 {
+    font-size: 40px;
+    color: white;
+    margin: 0;
+}
+
+.header p {
+    color: #b8c5e8;
+    margin-bottom: 0;
+}
+
+.logo {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.game {
+    background: #1c2545;
+    width: 90%;
+    max-width: 550px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px #0008;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #62d6ff;
+    margin-top: 0;
+}
+
+.subtitle {
+    text-align: center;
+    color: #b8c5e8;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+    font-weight: bold;
+}
+
+.progress {
+    background: #38466d;
+    height: 9px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #62d6ff;
+    transition: 0.3s;
+}
+
+#question {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.answers {
+    display: grid;
+    gap: 12px;
+}
+
+.answer {
+    background: #303e68;
+    color: white;
+    border: 2px solid transparent;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.answer:hover:not(:disabled) {
+    background: #40558b;
+    border-color: #62d6ff;
+}
+
+.answer:disabled {
+    cursor: default;
+    opacity: 0.9;
+}
+
+.correct {
+    background: #176b50 !important;
+    border-color: #43e6a3 !important;
+}
+
+.wrong {
+    background: #8b303e !important;
+    border-color: #ff6478 !important;
+}
+
+#feedback {
+    text-align: center;
+    margin-top: 18px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+#nextBtn, #restartBtn {
+    background: #62d6ff;
+    color: #10152b;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#nextBtn:hover, #restartBtn:hover {
+    background: #a0eaff;
+}
+
+#result {
+    text-align: center;
+    display: none;
+}
+
+#result h2 {
+    color: #62d6ff;
+    font-size: 30px;
+}
+
+#result p {
+    font-size: 20px;
+}
+
+#timer {
+    color: #ffd166;
+}
+
+/* Footer */
+
+.footer {
+    width: 100%;
+    min-height: 180px;
+    margin-top: auto;
+    padding: 30px 20px;
+    text-align: center;
+    background-image: url("CULOR.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer h2 {
+    color: #62d6ff;
+    margin-bottom: 15px;
+}
+
+.footer p {
+    color: #b8c5e8;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+    margin: 8px 0;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 0%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="brain.jpg" alt="Website Logo" class="logo">
+    <h1>Big Brain to</h1>
+    <p>Mag laro para mauto</p>
+
+</div>
+
+<div class="topnav">
+  <a href="file:///C:/Users/ACLC/Desktop/JAVA%20TECH/SubPage1.html">Sub Page 1</a>
+  <a href="file:///C:/Users/ACLC/Desktop/JAVA%20TECH/SubPage2.html">Sub page 2</a>
+  <a href="#">Link</a>
+  <a href="#" style="float:right">Link</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+
+<div class="game">
+
+    <div id="quiz">
+
+        <h1>🧠 BRAIN BATTLE</h1>
+        <p class="subtitle">Test your knowledge and challenge your brain!</p>
+
+        <div class="info">
+            <span id="questionNumber">Question 1/10</span>
+            <span>⭐ Score: <span id="score">0</span></span>
+            <span id="timer">⏱ 15s</span>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <h2 id="question">Question goes here</h2>
+
+        <div class="answers" id="answers"></div>
+
+        <p id="feedback"></p>
+
+        <button id="nextBtn" onclick="nextQuestion()" hidden>
+            Next Question →
+        </button>
+
+    </div>
+
+    <div id="result">
+
+        <h1>🏆 QUIZ COMPLETED!</h1>
+
+        <h2 id="finalScore">0/10</h2>
+
+        <p id="message"></p>
+
+        <button id="restartBtn" onclick="startGame()">
+            🔄 Play Again
+        </button>
+
+    </div>
+
+</div>
+
+    </div> 
+  </div>
+
+    <div class="rightcolumn">
+  </div>
+</div>
+<script>
+
+const questions = [
+    {
+        question: "What is the largest planet in our solar system?",
+        answers: ["Earth", "Jupiter", "Mars", "Saturn"],
+        correct: 1
+    },
+    {
+        question: "What is the chemical symbol of water?",
+        answers: ["CO2", "O2", "H2O", "NaCl"],
+        correct: 2
+    },
+    {
+        question: "Who is known as the national hero of the Philippines?",
+        answers: ["Andres Bonifacio", "Jose Rizal", "Emilio Aguinaldo", "Apolinario Mabini"],
+        correct: 1
+    },
+    {
+        question: "What is 12 × 8?",
+        answers: ["84", "92", "96", "108"],
+        correct: 2
+    },
+    {
+        question: "Which organ pumps blood throughout the body?",
+        answers: ["Brain", "Lungs", "Heart", "Liver"],
+        correct: 2
+    },
+    {
+        question: "What language is used to structure web pages?",
+        answers: ["HTML", "Python", "Java", "C++"],
+        correct: 0
+    },
+    {
+        question: "How many continents are there?",
+        answers: ["Five", "Six", "Seven", "Eight"],
+        correct: 2
+    },
+    {
+        question: "Which gas do plants absorb?",
+        answers: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        correct: 1
+    },
+    {
+        question: "What is the square root of 144?",
+        answers: ["10", "11", "12", "14"],
+        correct: 2
+    },
+    {
+        question: "Which part of the computer is considered its brain?",
+        answers: ["Monitor", "Keyboard", "CPU", "Mouse"],
+        correct: 2
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let timeLeft = 15;
+let timerInterval;
+let answered = false;
+
+function startGame() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    document.getElementById("score").textContent = score;
+
+    showQuestion();
+}
+
+function showQuestion() {
+
+    clearInterval(timerInterval);
+
+    answered = false;
+    timeLeft = 15;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion + 1}/${questions.length}`;
+
+    document.getElementById("question").textContent = q.question;
+
+    document.getElementById("timer").textContent = "⏱ 15s";
+
+    document.getElementById("progressBar").style.width =
+        (currentQuestion / questions.length * 100) + "%";
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").hidden = true;
+
+    const answersDiv = document.getElementById("answers");
+
+    answersDiv.innerHTML = "";
+
+    q.answers.forEach((answer, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = answer;
+
+        button.onclick = () => checkAnswer(index, button);
+
+        answersDiv.appendChild(button);
+
+    });
+
+    timerInterval = setInterval(() => {
+
+        timeLeft--;
+
+        document.getElementById("timer").textContent =
+            "⏱ " + timeLeft + "s";
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            checkAnswer(-1);
+        }
+
+    }, 1000);
+}
+
+function checkAnswer(selected, clickedButton) {
+
+    if (answered) return;
+
+    answered = true;
+
+    clearInterval(timerInterval);
+
+    const q = questions[currentQuestion];
+
+    const buttons = document.querySelectorAll(".answer");
+
+    buttons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === q.correct) {
+            button.classList.add("correct");
+        }
+
+    });
+
+    if (selected === q.correct) {
+
+        score++;
+
+        document.getElementById("score").textContent = score;
+
+        document.getElementById("feedback").textContent =
+            "🎉 Correct! Great job!";
+
+    } else {
+
+        if (clickedButton) {
+            clickedButton.classList.add("wrong");
+        }
+
+        document.getElementById("feedback").textContent =
+            selected === -1
+            ? "⏰ Time's up! The correct answer is " + q.answers[q.correct]
+            : "❌ Incorrect! The answer is " + q.answers[q.correct];
+
+    }
+
+    document.getElementById("nextBtn").hidden = false;
+
+    if (currentQuestion === questions.length - 1) {
+        document.getElementById("nextBtn").textContent = "See Results 🏆";
+    }
+
+}
+
+function nextQuestion() {
+
+    if (!answered) return;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+
+}
+
+function showResult() {
+
+    clearInterval(timerInterval);
+
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("finalScore").textContent =
+        score + "/" + questions.length;
+
+    let message = "";
+
+    if (score === 10) {
+        message = "🌟 Perfect! You're a genius!";
+    } else if (score >= 7) {
+        message = "🔥 Excellent! You know your stuff!";
+    } else if (score >= 5) {
+        message = "👏 Good job! Keep learning!";
+    } else {
+        message = "💪 Keep practicing! You can do better!";
+    }
+
+    document.getElementById("message").textContent = message;
+
+    document.getElementById("progressBar").style.width = "100%";
+
+}
+
+startGame();
+
+</script>
+
+
+<div class="footer">
+    <h2>About This Game Is Inspired By:</h2>
+    <p>Brain Battle - Educational Quiz Game</p>
+    <p>Learn, Play, and Challenge Your Brain!</p>
+    <p>References:</p>
+    <p>W3Schools | YouTube | Udemy</p>
+    <p>© 2026 Brain Battle. All Rights Reserved.</p>
+</div>
+
+
+</body>
+</html>
